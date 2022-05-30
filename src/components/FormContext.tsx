@@ -1,48 +1,18 @@
-import { FC, useContext, useState } from "react";
-import { Dispatch } from "react";
+import { FC } from "react";
 import { createContext, PropsWithChildren } from "react";
 import { Payload } from '../service/postForm';
+import { Updater, useImmer } from 'use-immer';
+import { v4 as uuidv4 } from 'uuid';
 
 interface FormContextValues {
-    values: Payload
-    setValues: Dispatch<React.SetStateAction<Payload>>
+    fields: Payload
+    updateFields: Updater<Payload>
 }
 
 export const FormContext = createContext<FormContextValues>({} as FormContextValues);
 
-export const useEmployerFields = () => {
-    const { values, setValues } = useContext(FormContext)
-    return {
-        addEmployerField: () => setValues({
-            ...values, ...{
-                employer: [
-                    ...values.employer,
-                    {
-                        name: '',
-                        start_date: '',
-                        end_date: ''
-                    }
-                ]
-            }
-        }),
-
-        removeEmployerField: (index: number) => {
-            const newEmployerFields = values.employer.filter((_field, fieldIndex) => fieldIndex !== index)
-            setValues({
-                ...values, ...{
-                    employer: newEmployerFields
-                }
-            })
-        },
-
-        changeEmployerField: () => {
-            
-        }
-    }
-}
-
 export const FormContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
-    const [values, setValues] = useState<Payload>({
+    const [fields, updateFields] = useImmer<Payload>({
         personal: {
             first_name: '',
             last_name: '',
@@ -50,6 +20,7 @@ export const FormContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
         },
         employer: [
             {
+                id: uuidv4(),
                 name: '',
                 start_date: '',
                 end_date: ''
@@ -58,12 +29,12 @@ export const FormContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
         guarantor: {
             name: '',
             address: '',
-            relation: 'employer',
+            relation: '',
         }
     })
 
     return (
-        <FormContext.Provider value={{ values, setValues: setValues }}>
+        <FormContext.Provider value={{ fields, updateFields }}>
             {children}
         </FormContext.Provider>
     );

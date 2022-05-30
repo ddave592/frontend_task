@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 
 interface Option {
     label: string
@@ -9,16 +9,26 @@ interface Props {
     label: string
     name: string
     options: Option[]
+    value: string
+    onChange?(value: string): void
 }
 
-export const SelectField: FC<Props> = ({ label, name, options }) => {
-    return (<div className="field field-select">
-        <label id={name}>{label}</label>
-        <select name={name} id={name} defaultValue="" >
-            <option value="" disabled hidden> - Select a {label} - </option>
-            {options.map(option => (
-                <option key={option.label} value={option.value}>{option.label}</option>
-            ))}
-        </select>
-    </div>);
+export const SelectField: FC<Props> = ({ label, name, options, onChange, value }) => {
+    const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        if (onChange) {
+            onChange(event.target.value)
+        }
+    }
+
+    return (
+        <div className="field field-select">
+            <label htmlFor={name}>{label}</label>
+            <select name={name} id={name} defaultValue={value} onChange={handleChange} >
+                <option value="" disabled hidden> - Select a {label} - </option>
+                {options.map(option => (
+                    <option key={option.label} value={option.value}>{option.label}</option>
+                ))}
+            </select>
+        </div>
+    )
 }

@@ -1,8 +1,9 @@
-import { Button } from "./components/Button"
 import { EmployerSection } from "./components/sections/EmployerSection";
 import { PersonalSection } from "./components/sections/PersonalSection";
 import { GuarantorSection } from "./components/sections/GuarantorSection";
 import { FormContextProvider } from "./components/FormContext";
+import { FormButton } from "./FormButton";
+
 
 function App() {
     return (
@@ -13,10 +14,7 @@ function App() {
                 <EmployerSection />
                 <GuarantorSection />
 
-                <div className="button-group">
-                    <Button text="Cancel" variant="link" onClick={() => console.log('clicked')} />
-                    <Button text="Submit" variant="outline" onClick={() => console.log('clicked')} />
-                </div>
+                <FormButton />
             </main>
         </FormContextProvider>
     );
