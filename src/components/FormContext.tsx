@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { Dispatch } from "react";
 import { createContext, PropsWithChildren } from "react";
 import { Payload } from '../service/postForm';
@@ -8,7 +8,38 @@ interface FormContextValues {
     setValues: Dispatch<React.SetStateAction<Payload>>
 }
 
-const FormContext = createContext<FormContextValues>({} as FormContextValues);
+export const FormContext = createContext<FormContextValues>({} as FormContextValues);
+
+export const useEmployerFields = () => {
+    const { values, setValues } = useContext(FormContext)
+    return {
+        addEmployerField: () => setValues({
+            ...values, ...{
+                employer: [
+                    ...values.employer,
+                    {
+                        name: '',
+                        start_date: '',
+                        end_date: ''
+                    }
+                ]
+            }
+        }),
+
+        removeEmployerField: (index: number) => {
+            const newEmployerFields = values.employer.filter((_field, fieldIndex) => fieldIndex !== index)
+            setValues({
+                ...values, ...{
+                    employer: newEmployerFields
+                }
+            })
+        },
+
+        changeEmployerField: () => {
+            
+        }
+    }
+}
 
 export const FormContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
     const [values, setValues] = useState<Payload>({
@@ -17,7 +48,13 @@ export const FormContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
             last_name: '',
             current_address: ''
         },
-        employer: [],
+        employer: [
+            {
+                name: '',
+                start_date: '',
+                end_date: ''
+            }
+        ],
         guarantor: {
             name: '',
             address: '',
