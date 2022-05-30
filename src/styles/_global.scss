@@ -1,0 +1,13 @@
+@use "./normalise.css";
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+
+body {
+    font-family: "Raleway", sans-serif;
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}

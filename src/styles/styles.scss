@@ -1,0 +1,127 @@
+@use "./global";
+@use "./breakpoints";
+
+$border-radius: 0;
+
+$primary: black;
+$link: #3f51b5;
+
+.main {
+    padding: 0 20px;
+    max-width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto 20px auto;
+
+    &-title {
+        text-align: center;
+    }
+}
+
+.section {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 48px 0;
+    border-radius: $border-radius;
+
+    &-title {
+        margin-top: -33px;
+        padding: 0 10px;
+        background: white;
+        width: fit-content;
+
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    label {
+        padding-bottom: 4px;
+    }
+
+    &-text {
+        input {
+            border-radius: $border-radius;
+            padding: 12px 10px;
+            border: 1px solid black;
+        }
+    }
+
+    &-select {
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 16px 12px;
+            border-radius: $border-radius;
+            padding: 12px 10px;
+            border: 1px solid black;
+        }
+    }
+}
+
+.employer-field {
+    margin-bottom: 20px;
+
+    &-dashed {
+        border-bottom: 1px dashed;
+        padding-bottom: 20px;
+    }
+}
+
+.button {
+    padding: 6px 16px;
+    background: none;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-link {
+        color: $link;
+        text-decoration: underline;
+    }
+
+    &-outline {
+        border: 1px solid $primary;
+        background: white;
+        box-shadow: 3px 3px $primary;
+        transition: 0.2s ease-in-out box-shadow;
+
+        &:hover {
+            box-shadow: 0px 0px $primary;
+        }
+
+        &:active {
+            box-shadow: 1px 1px inset $primary;
+        }
+    }
+
+    &-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+}
+
+.panel {
+    display: grid;
+    gap: 20px;
+
+    &-two-columns {
+        @include breakpoints.min-query("md") {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        grid-template-columns: 1fr;
+    }
+}
