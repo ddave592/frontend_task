@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { Button } from "./components/Button";
-import { FormContext } from "./components/FormContext";
-import { postForm } from "./service/postForm";
+import { Button } from "./Button";
+import { FormContext } from "./FormContext";
+import { postForm } from "../service/postForm";
 
 export function FormButton() {
     const { fields } = useContext(FormContext)

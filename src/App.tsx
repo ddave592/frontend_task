@@ -2,7 +2,7 @@ import { EmployerSection } from "./components/sections/EmployerSection";
 import { PersonalSection } from "./components/sections/PersonalSection";
 import { GuarantorSection } from "./components/sections/GuarantorSection";
 import { FormContextProvider } from "./components/FormContext";
-import { FormButton } from "./FormButton";
+import { FormButton } from "./components/FormButton";
 
 
 function App() {
