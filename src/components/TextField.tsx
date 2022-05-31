@@ -28,6 +28,6 @@ export const TextField: FC<Props> = ({ label, name, pattern, type, value: propVa
 
     return (<div className="field field-text">
         <label htmlFor={id ?? name}>{label}</label>
-        <input value={value} onChange={handleChange} type={type} name={name} id={id ?? name} pattern={pattern} />
+        <input title={label} value={value} onChange={handleChange} type={type} id={id ?? name} pattern={pattern} />
     </div>);
 }

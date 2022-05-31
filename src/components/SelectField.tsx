@@ -23,7 +23,7 @@ export const SelectField: FC<Props> = ({ label, name, options, onChange, value }
     return (
         <div className="field field-select">
             <label htmlFor={name}>{label}</label>
-            <select name={name} id={name} defaultValue={value} onChange={handleChange} >
+            <select title={label} id={name} defaultValue={value} onChange={handleChange} >
                 <option value="" disabled hidden> - Select a {label} - </option>
                 {options.map(option => (
                     <option key={option.label} value={option.value}>{option.label}</option>
