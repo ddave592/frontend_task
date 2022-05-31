@@ -29,10 +29,10 @@ export const EmployerField: FC<Props> = ({ index, values, showDashed }) => {
 
     return (
         <div className={classes}>
-            <TextField value={values.name} onChange={handleFieldChange('name')} label="Employer name" name="employer_name" />
+            <TextField value={values.name} onChange={handleFieldChange('name')} label="Employer name" name="employer_name" id={`employer_name_${index}`} />
             <Panel columns={2}>
-                <TextField value={values.start_date} onChange={handleFieldChange('start_date')} label="Employment start date" name="employment_start_date" type="date" />
-                <TextField value={values.end_date} onChange={handleFieldChange('end_date')} label="Employment end date" name="employment_end_date" type="date" />
+                <TextField value={values.start_date} onChange={handleFieldChange('start_date')} label="Employment start date" name="employment_start_date" id={`employment_start_date_${index}`} type="date" />
+                <TextField value={values.end_date} onChange={handleFieldChange('end_date')} label="Employment end date" name="employment_end_date" id={`employment_end_date_${index}`} type="date" />
             </Panel>
             <div>
                 {showDelete && <Button onClick={() => removeEmployerField(index)} variant="outline" text="Delete" />}

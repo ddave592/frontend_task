@@ -7,9 +7,10 @@ interface Props {
     type?: 'date' | 'text'
     value: string
     onChange?(value: string): void
+    id?: string
 }
 
-export const TextField: FC<Props> = ({ label, name, pattern, type, value: propValue, onChange }) => {
+export const TextField: FC<Props> = ({ label, name, pattern, type, value: propValue, onChange, id }) => {
     const [value, setValue] = useState(propValue)
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +27,7 @@ export const TextField: FC<Props> = ({ label, name, pattern, type, value: propVa
     }
 
     return (<div className="field field-text">
-        <label htmlFor={name}>{label}</label>
-        <input value={value} onChange={handleChange} type={type} name={name} id={name} pattern={pattern} />
+        <label htmlFor={id ?? name}>{label}</label>
+        <input value={value} onChange={handleChange} type={type} name={name} id={id ?? name} pattern={pattern} />
     </div>);
 }
